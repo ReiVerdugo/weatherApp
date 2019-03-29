@@ -2,12 +2,15 @@ import React from 'react';
 import { View, Image } from 'react-native';
 
 const Header = () => {
-  const { headerViewStyle, sunImageStyle, headerImageStyle} = styles;
+  const { headerViewStyle, sunImageStyle, headerImageStyle } = styles;
+  const sunImage = require('../../assets/drawable-xhdpi/ic_clear.png');
 
+  const sunshineTextImage = require('../../assets/drawable-xhdpi/ic_logo.png');
+  
   return (
     <View style={headerViewStyle}>
-      <Image style={sunImageStyle} source={require('../../assets/drawable-xhdpi/ic_clear.png')} />
-      <Image style={headerImageStyle} source={require('../../assets/drawable-xhdpi/ic_logo.png')} />
+      <Image style={sunImageStyle} source={sunImage} />
+      <Image style={headerImageStyle} source={sunshineTextImage} />
     </View>
   );
 };
@@ -23,8 +26,9 @@ const styles = {
     flexDirection: 'row',
     shadowOffset: { width: 0, height: 3},
     shadowRadius: 2,
-    shadowOpacity: 0.3,
-    shadowColor: 'black'
+    shadowOpacity: 0.5,
+    shadowColor: 'black',
+    elevation: 4
   },
   sunImageStyle: {
     width: 50,
@@ -35,7 +39,7 @@ const styles = {
   headerImageStyle: {
     height: 50
   }
-}
+};
 
 export default Header;
 

@@ -9,6 +9,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Header from './src/components/Header';
+import TodaySection from './src/components/TodaySection';
+import WeatherList from './src/components/WeatherList';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -21,7 +23,11 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Header />
+      <View >
+        <Header />
+        <TodaySection />
+        <WeatherList />
+      </View>
     );
   }
 }
