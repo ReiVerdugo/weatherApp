@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { ScrollView, ActivityIndicator } from 'react-native';
+import { ScrollView, ActivityIndicator, View } from 'react-native';
 import axios from 'axios';
 import Row from './Row';
+import TodaySection from './TodaySection';
 
 class WeatherList extends Component {
-  state = { weathers: [], isLoading: true };
+  state = { weathers: [], isLoading: true, weather: {} };
 
   componentDidMount() {
-    axios.get('http://api.openweathermap.org/data/2.5/forecast?q=London&cnt=10&APPID=4c1b641be580fd9771715065915442b2')
-    .then(response => this.setState({ weathers: response.data.list, isLoading: false }));
+    axios.get('http://api.openweathermap.org/data/2.5/forecast?q=London&units=metric&cnt=10&APPID=4c1b641be580fd9771715065915442b2')
+    .then(response => this.setState({ weathers: response.data.list, isLoading: false, weather: response.data.list[0] }));
   }
 
   renderWeathers() {
@@ -26,11 +27,23 @@ class WeatherList extends Component {
     });
   }
 
+  renderFirstWeather() {
+    if (this.state.isLoading) {
+      return <ActivityIndicator size="large" color="#0000ff" />;
+    }
+    return <TodaySection weather={this.state.weather} />;
+  }
+
   render() {
     return (
-      <ScrollView>
-        {this.renderWeathers()}
-      </ScrollView>
+      <View >
+        <View>
+          {this.renderFirstWeather()}
+        </View>
+        <ScrollView >
+          {this.renderWeathers()}
+        </ScrollView>
+      </View>
     );
   }
 }

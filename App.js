@@ -9,7 +9,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Header from './src/components/Header';
-import TodaySection from './src/components/TodaySection';
 import WeatherList from './src/components/WeatherList';
 
 const instructions = Platform.select({
@@ -25,7 +24,6 @@ export default class App extends Component<Props> {
     return (
       <View style={{ flex: 1 }} >
         <Header />
-        <TodaySection />
         <WeatherList />
       </View>
     );
